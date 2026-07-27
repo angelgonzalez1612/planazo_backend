@@ -1,5 +1,14 @@
 export type ContentStatus = 'draft' | 'in_review' | 'published' | 'archived';
 
+export type UserRole = 'admin' | 'editor';
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+}
+
 export interface Category {
   id: string;
   name: string;
