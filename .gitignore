@@ -11,3 +11,7 @@ coverage
 *.log
 .DS_Store
 .vercel
+
+# Agent skills — machine-specific symlinks, restore with `npx skills experimental_install`
+.claude/skills/
+.agents/skills/
