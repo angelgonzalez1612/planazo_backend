@@ -117,3 +117,19 @@ export interface PlanazoEvent {
   place: Place | null;
   status: ContentStatus;
 }
+
+export const PLACE_CATEGORY_SLUGS = ['comer', 'cafes', 'bares', 'cultura', 'aire-libre', 'tecnologia'] as const;
+export type PlaceCategorySlug = (typeof PLACE_CATEGORY_SLUGS)[number];
+
+/** Input to POST /cms/ai/generate-place — only what a human editor already knows. */
+export interface PlaceDraftInput {
+  name: string;
+  hints?: string;
+}
+
+/** AI-generated draft — never includes address/phone/price; those are human-verified. */
+export interface PlaceDraftOutput {
+  description: string;
+  suggestedCategory: PlaceCategorySlug;
+  suggestedTags: string[];
+}
