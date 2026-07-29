@@ -7,9 +7,16 @@ rankings, en vez de vivir dentro de un único post de blog.
 
 Este repo es hermano de [`planazo_fronted`](https://github.com/angelgonzalez1612/planazo_fronted)
 (sitio público) y [`planazo_cms`](https://github.com/angelgonzalez1612/planazo_cms)
-(panel de generación de contenido con IA, en construcción). Los tres
-consumen el mismo contrato en `packages/types` y, cuando el CMS exista,
-ambos frontends van a hablarle a esta API por HTTP — nunca entre ellos.
+(panel de generación de contenido con IA). Cada repo es independiente
+(su propio git, deploy y workspace pnpm) — ambos frontends le hablan a
+esta API por HTTP, nunca entre ellos.
+
+Este repo es la **fuente de verdad** de `packages/types` (contrato HTTP) y
+`packages/shared` (utilidades puras). `planazo_fronted` usa ambos;
+`planazo_cms` solo usa `types` (no necesita `slugify`/`formatPriceLevel`/
+`dayName`, por eso no tiene `packages/shared`). No hay registry ni symlink:
+tras editar cualquiera de los dos, corre `pnpm sync-shared` y commitea el
+diff resultante en cada repo hermano como si fuera un bump de dependencia.
 
 ## Estructura
 
